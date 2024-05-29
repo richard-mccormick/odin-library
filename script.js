@@ -16,15 +16,26 @@ function addBookToLibrary(title, author, pages, isRead) {
 //book display window
 const bookshelf = document.querySelector("#bookshelf")
 
-function createBookElement (book) {
+function createBookElement(type, content) {
+    element = document.createElement("div");
+    element.classList.add("book-info");
+    element.classList.add(type);
+    element.textContent = content;
+    return element;
+}
+
+function displayBook (book) {
     const bookElement = document.createElement("div");
     bookElement.classList.add("book");
+
     const close = document.createElement("button");
     close.classList.add("close");
     close.textContent = "x";
-    const bookTitle = document.createElement("div");
-    bookTitle.classList.add("book-title");
-    bookTitle.textContent = book.title;
+
+    const title = createBookElement("title", book.title);
+    const author = createBookElement("author", book.author);
+    const pages = createBookElement("pages", book.pages);
+
     const readToggle = document.createElement("button");
 
     if(book.isRead === true){
@@ -36,7 +47,9 @@ function createBookElement (book) {
     }
 
     bookElement.appendChild(close);
-    bookElement.appendChild(bookTitle);
+    bookElement.appendChild(title);
+    bookElement.appendChild(author);
+    bookElement.appendChild(pages);
     bookElement.appendChild(readToggle);
 
     bookshelf.appendChild(bookElement);
