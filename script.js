@@ -11,6 +11,7 @@ function Book(title, author, pages, isRead)  {
 
 function addBookToLibrary(title, author, pages, isRead) {
     myLibrary.push(new Book(title, author, pages, isRead));
+    displayLibrary();
 }
 
 //book display window
@@ -72,3 +73,30 @@ function displayLibrary() {
         displayBook(myLibrary[i], i);
     }
 }
+
+//Add book form
+const bookForm = document.querySelector("#book-form");
+
+function displayForm() {
+    bookForm.style.display = "block";
+}
+
+function closeForm() {
+    bookForm.style.display = "none";
+}
+
+const form = document.querySelector("#book-form");
+const title = document.querySelector("#title");
+const author = document.querySelector("#author");
+const pages = document.querySelector("#pages");
+const readStatus = document.querySelector("#read-status");
+
+function bookSubmit(event){
+    addBookToLibrary(title.value, author.value, pages.value, readStatus.checked);
+    title.value = author.value = pages.value = "";
+    readStatus.checked = false;
+    closeForm();
+    event.preventDefault();
+}
+
+form.addEventListener("submit", bookSubmit, true);
