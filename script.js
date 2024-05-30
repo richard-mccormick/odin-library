@@ -24,13 +24,22 @@ function createBookElement(type, content) {
     return element;
 }
 
-function displayBook (book) {
+function deleteBook(index){
+    myLibrary.splice(index, 1);
+    displayLibrary();
+}
+
+function displayBook (book, index) {
     const bookElement = document.createElement("div");
     bookElement.classList.add("book");
 
     const close = document.createElement("button");
     close.classList.add("close");
     close.textContent = "x";
+    close.dataset.index = index;
+    close.addEventListener("click", () => {
+        deleteBook(index);
+    }); 
 
     const title = createBookElement("title", book.title);
     const author = createBookElement("author", book.author);
@@ -59,5 +68,7 @@ function displayLibrary() {
     //empties div
     bookshelf.textContent = "";
 
-    myLibrary.forEach((book) => createBookElement(book));
+    for (let i = 0; i < myLibrary.length; i++){
+        displayBook(myLibrary[i], i);
+    }
 }
