@@ -132,7 +132,7 @@ body {
     border: none;
 }
 
-.close:hover,.read{
+.close:hover, .read, .unread{
     text-shadow: 1px 1px 3px black;
 }
 
@@ -140,11 +140,18 @@ body {
     width: 75px;
     height: 25px;
     align-self: center;
-    background-color: darkgoldenrod;
     color: white;
     font-weight: bold;
     border: solid 2px black;
     border-radius: 10px;
     margin-bottom: 15px;    
+}
+
+.read {
+    background-color: darkgoldenrod;
+}
+
+.unread {
+    background-color: rgb(226, 200, 133);
 }
 

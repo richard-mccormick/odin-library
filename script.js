@@ -56,6 +56,17 @@ function displayBook (book, index) {
         readToggle.textContent = "Unread";
     }
 
+    readToggle.addEventListener("click", () => {
+        book.isRead = !(book.isRead);
+        if(book.isRead === true){
+            readToggle.classList.replace("unread", "read");
+            readToggle.textContent = "Read";
+        }else {
+            readToggle.classList.replace("read", "unread");
+            readToggle.textContent = "Unread";
+        }
+    })
+
     bookElement.appendChild(close);
     bookElement.appendChild(title);
     bookElement.appendChild(author);
